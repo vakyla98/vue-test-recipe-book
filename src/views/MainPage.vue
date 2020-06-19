@@ -48,8 +48,8 @@ export default {
             console.log(this.recipes)
         },
     },
-    async created() {
-        await this.fetchRecipes()
+    created() {
+        this.fetchRecipes()
     },
 }
 </script>

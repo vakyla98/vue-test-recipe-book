@@ -12,17 +12,27 @@
                 <p v-for="(value, name) in recipe.ingredients" :key="name">
                     {{ name }},{{ value }}
                 </p>
+                <button @click="deleteRecipe">Delete</button>
             </div>
         </div>
     </transition>
 </template>
 <script>
+import { recipesService } from '../services'
+import { mapActions } from 'vuex'
 export default {
     name: 'ActiveCard',
     props: {
         recipe: {
             type: Object,
             required: true,
+        },
+    },
+    methods: {
+        ...mapActions(['fetchRecipes']),
+        async deleteRecipe() {
+            await recipesService.deleteRecipe(this.recipe.key)
+            this.fetchRecipes()
         },
     },
 }
