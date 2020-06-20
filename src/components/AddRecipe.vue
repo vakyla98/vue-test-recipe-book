@@ -7,18 +7,25 @@
         Image
         <input type="text" v-model="image" />
         Ingridients
-        <input type="text" v-model="ingredients" />
+        <ingredients-list :ingredients="ingredients" />
+        <add-ingredient :ingredients="ingredients" />
         <button @click="$emit('cancel')">Exit</button>
         <button type="submit">Submit</button>
     </form>
 </template>
 <script>
+import IngredientsList from './IngredientsList'
 import { recipesService } from '../services'
 import { mapActions } from 'vuex'
+import AddIngredient from './AddIngredient'
 export default {
     name: 'AddRecipe',
+    components: {
+        AddIngredient,
+        IngredientsList,
+    },
     data() {
-        return { name: '', text: '', image: '', ingredients: '' }
+        return { name: '', text: '', image: '', ingredients: {} }
     },
     methods: {
         ...mapActions(['fetchRecipes']),

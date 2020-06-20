@@ -1,8 +1,14 @@
 <template>
-  <div id="app">
-    <router-link to="/">Home</router-link> |
-    <router-view />
-  </div>
+    <div id="app">
+        <Header />
+        <router-view />
+    </div>
 </template>
-
-<style lang="scss"></style>
+<script>
+import Header from './components/Header'
+export default {
+    components: {
+        Header,
+    },
+}
+</script>

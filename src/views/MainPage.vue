@@ -10,7 +10,11 @@
             />
             <button @click="toggleModal">Add recipe</button>
             <add-recipe v-if="isAdding" @cancel="toggleModal" />
-            <active-recipe :recipe="activeRecipe" v-if="activeRecipe.name" />
+            <active-recipe
+                :recipe="activeRecipe"
+                v-else-if="activeRecipe.name"
+                @clearActiveRecipe="activeRecipe = {}"
+            />
         </div>
     </div>
 </template>
@@ -45,7 +49,6 @@ export default {
         },
         toggleModal() {
             this.isAdding = !this.isAdding
-            console.log(this.recipes)
         },
     },
     created() {
