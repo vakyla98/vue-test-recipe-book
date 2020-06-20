@@ -14,7 +14,7 @@
         ></v-text-field>
         <v-text-field
             color="yellow darken-3"
-            label="Image"
+            label="Image URL"
             required
             v-model="image"
         ></v-text-field>

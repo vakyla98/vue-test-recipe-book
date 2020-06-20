@@ -16,11 +16,11 @@
         </div>
 
         <v-btn
+            :disabled="!ingredientName.length"
             class="add-ingredient__btn ml-1"
             color="yellow darken-3"
             small
             @click.prevent="addIngredient"
-            :disabled="false"
             >Add ingredient</v-btn
         >
     </div>
@@ -50,4 +50,3 @@ export default {
     },
 }
 </script>
-

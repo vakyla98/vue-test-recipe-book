@@ -18,6 +18,7 @@
                     v-model.lazy="data.count"
                 />
                 <v-btn
+                    :disabled='Object.keys(ingredients).length == 1' 
                     class="ingredient__del-btn"
                     color="yellow darken-3"
                     small
