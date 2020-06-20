@@ -19,7 +19,12 @@
             v-model="image"
         ></v-text-field>
         <ingredients-list :ingredients="ingredients" />
-        <p class="ingredients-alert">Minimum one ingredient must be at list</p>
+        <p
+            class="ingredients-alert"
+            v-if="Object.keys(this.ingredients).length === 0"
+        >
+            Minimum one ingredient must be at list
+        </p>
         <add-ingredient :ingredients="ingredients" />
         <div class="form__controls mt-5">
             <v-btn color="grey" @click="$emit('cancel')">Exit</v-btn>
