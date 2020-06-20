@@ -1,33 +1,59 @@
 <template>
     <transition name="fade" mode="out-in">
         <div
-            class="active-recipe"
+            class="active-recipe d-flex flex-column flex-sm-row pa-2 align-center align-sm-stretch"
             @click="$emit('changeActiveHandler', recipe)"
+            :key="recipe.name"
         >
-            <img class="active-recipe__img" :src="recipe.image" />
-            <div class="active-recipe__data">
-                <v-btn color="yellow darken-3" @click="isChanging = !isChanging"
-                    >Edit</v-btn
-                >
+            <div class="active-recipe__about d-flex flex-column mr-0 mr-sm-3">
                 <div v-if="isChanging">
-                    <input v-model="recipe.name" />
-                    <input v-model="recipe.text" />
-                    <input v-model.lazy="recipe.image" />
+                    <label class="input-label">
+                        Recipe name
+                        <input class="input  mb-2" v-model="recipe.name" />
+                    </label>
+                    <label class="input-label">
+                        Image link
+                        <input
+                            class="input  mb-2"
+                            v-model.lazy="recipe.image"
+                        />
+                    </label>
                 </div>
                 <div v-else>
-                    <p v-text="recipe.name" />
-                    <p v-text="recipe.text" />
+                    <h2 class="name text-center mx-2" v-text="recipe.name" />
                 </div>
-
+                <img class="active-recipe__img mb-3" :src="recipe.image" />
+                <textarea
+                    class="input text"
+                    rows="4"
+                    v-model="recipe.text"
+                    v-if="isChanging"
+                />
+                <p class="text" v-text="recipe.text" v-else />
+            </div>
+            <div class="active-recipe__ingredients ma-1">
                 <ingredients-list :ingredients="recipe.ingredients" />
                 <add-ingredient :ingredients="recipe.ingredients" />
-
-                <v-btn color="yellow darken-3" @click="saveRecipe"
-                    >Save recipe</v-btn
-                >
-                <v-btn color="yellow darken-3" @click="deleteRecipe"
-                    >Delete recipe</v-btn
-                >
+                <div class="active-recipe__controls mt-5 mt-sm-auto">
+                    <v-btn
+                        class="edit-btn"
+                        color="yellow darken-3"
+                        @click="isChanging = !isChanging"
+                        ><v-icon>mdi-pencil</v-icon></v-btn
+                    >
+                    <v-btn
+                        class="ml-3"
+                        color="yellow darken-3"
+                        @click="saveRecipe"
+                        ><v-icon>mdi-content-save</v-icon></v-btn
+                    >
+                    <v-btn
+                        class="ml-3"
+                        color="yellow darken-3"
+                        @click="deleteRecipe"
+                        ><v-icon>mdi-delete</v-icon></v-btn
+                    >
+                </div>
             </div>
         </div>
     </transition>
@@ -70,22 +96,3 @@ export default {
     },
 }
 </script>
-<style lang="scss">
-.ing {
-    border: 3px solid red;
-}
-.active-recipe {
-    display: flex;
-    align-items: center;
-    font-size:14px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-
-    &__img {
-        max-height: 250px;
-    }
-    &__data {
-    }
-}
-</style>

@@ -1,11 +1,27 @@
 <template>
-    <div>
-        Name
-        <input type="text" v-model="ingredientName" />
-        Count
-        <input type="number" v-model.number="ingredientCount" />
-        <v-btn color="yellow darken-3" small @click.prevent="addIngredient"
-            >Add ing</v-btn
+    <div class="add-ingredient mt-5">
+        <div class="inputs-wraper">
+            <input
+                class="input input__name mr-1 mb-2"
+                type="text"
+                placeholder="Ingredien name"
+                v-model="ingredientName"
+            />
+            <input
+                class="input input__count mb-2"
+                type="number"
+                placeholder="Count"
+                v-model.number="ingredientCount"
+            />
+        </div>
+
+        <v-btn
+            class="add-ingredient__btn ml-1"
+            color="yellow darken-3"
+            small
+            @click.prevent="addIngredient"
+            :disabled="false"
+            >Add ingredient</v-btn
         >
     </div>
 </template>
@@ -29,8 +45,9 @@ export default {
                 count: this.ingredientCount,
             })
             this.ingredientName = ''
-            this.ingredientCount = 0
+            this.ingredientCount = 1
         },
     },
 }
 </script>
+

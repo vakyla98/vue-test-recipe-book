@@ -1,14 +1,23 @@
 <template>
     <div>
-        <v-btn color="yellow darken-3" @click="toggleModal">Add recipe</v-btn>
         <div v-if="isLoading">Wait loading</div>
         <div v-else>
-            <active-recipe
-                :recipe="activeRecipe"
-                v-if="activeRecipe.name"
-                @clearActiveRecipe="activeRecipe = {}"
-            />
-
+            <transition name="fade" mode="out-in">
+                <add-recipe v-if="isAdding" @cancel="toggleAddingRecipe" />
+                <div v-else>
+                    <v-btn
+                        class="addRecipe-btn mb-2"
+                        color="yellow darken-3"
+                        @click="toggleAddingRecipe"
+                        >Add recipe</v-btn
+                    >
+                    <active-recipe
+                        class="mb-5"
+                        :recipe="activeRecipe"
+                        @clearActiveRecipe="activeRecipe = recipes[0]"
+                    />
+                </div>
+            </transition>
             <div class="recipes-list">
                 <recipe-card
                     class="recipe-card"
@@ -18,7 +27,6 @@
                     @changeActiveHandler="changeActiveRecipe"
                 />
             </div>
-            <add-recipe v-if="isAdding" @cancel="toggleModal" />
         </div>
     </div>
 </template>
@@ -51,23 +59,14 @@ export default {
         changeActiveRecipe(newActive) {
             this.activeRecipe = newActive
         },
-        toggleModal() {
+        toggleAddingRecipe() {
             this.isAdding = !this.isAdding
         },
     },
-    created() {
-        this.fetchRecipes()
+    async created() {
+        await this.fetchRecipes()
+        this.activeRecipe = this.recipes[0]
     },
 }
 </script>
-<style lang="scss">
-.recipes-list {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 10px;
-}
-.add-recipe {
-    background-color: green;
-    color: red;
-}
-</style>
+

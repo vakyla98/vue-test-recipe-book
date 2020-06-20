@@ -1,16 +1,36 @@
 <template>
-    <form @submit.prevent="onSubmit">
-        Name
-        <input type="text" v-model="name" />
-        Text
-        <input type="text" v-model="text" />
-        Image
-        <input type="text" v-model="image" />
-        Ingridients
+    <form class="form" @submit.prevent="onSubmit">
+        <v-text-field
+            color="yellow darken-3"
+            label="Name"
+            required
+            v-model="name"
+        ></v-text-field>
+        <v-text-field
+            color="yellow darken-3"
+            label="Text"
+            required
+            v-model="text"
+        ></v-text-field>
+        <v-text-field
+            color="yellow darken-3"
+            label="Image"
+            required
+            v-model="image"
+        ></v-text-field>
         <ingredients-list :ingredients="ingredients" />
+        <p class="ingredients-alert">Minimum one ingredient must be at list</p>
         <add-ingredient :ingredients="ingredients" />
-        <button @click="$emit('cancel')">Exit</button>
-        <button type="submit">Submit</button>
+        <div class="form__controls mt-5">
+            <v-btn color="grey" @click="$emit('cancel')">Exit</v-btn>
+            <v-btn
+                class="ml-3"
+                color="yellow darken-3"
+                :disabled="!isValid"
+                type="submit"
+                >Submit</v-btn
+            >
+        </div>
     </form>
 </template>
 <script>
@@ -36,10 +56,22 @@ export default {
                 ingredients: this.ingredients,
                 image: this.image,
             })
-            await this.fetchRecipes()
             this.$emit('cancel')
+            await this.fetchRecipes()
+        },
+    },
+    computed: {
+        isValid() {
+            if (
+                Object.keys(this.ingredients).length === 0 ||
+                this.image === '' ||
+                this.text === '' ||
+                this.name === ''
+            ) {
+                return false
+            }
+            return true
         },
     },
 }
 </script>
-<style lang="scss"></style>

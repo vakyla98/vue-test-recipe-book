@@ -1,0 +1,26 @@
+.ingredients {
+    max-height: 250px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.ingredient {
+    display: flex;
+    justify-content: space-between;
+    &__name {
+        flex-grow: 1;
+    }
+    &__counter {
+        text-align: center;
+        width: 60px;
+    }
+    &__del {
+        &-btn {
+            padding: 0 !important;
+            margin-right: 15px !important;
+            min-width: 28px !important;
+        }
+        &-icon {
+            transform: rotate(45deg);
+        }
+    }
+}

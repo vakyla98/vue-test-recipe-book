@@ -1,0 +1,35 @@
+@import '../mixins.scss';
+.active-recipe {
+    position: relative;
+    font-size: 14px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    &__img {
+        width: 100%;
+        max-width: 300px;
+        object-fit: contain;
+        align-self: center;
+        border-radius: 5px;
+        @include screen(min,400px){
+            height:300px;
+        }
+    }
+    &__about {
+        flex: 1 0 300px;
+        .input {
+            width: 100%;
+        }
+    }
+    &__ingredients {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    &__controls {
+        display: flex;
+        justify-self: flex-end;
+        align-self: flex-end;
+    }
+}
