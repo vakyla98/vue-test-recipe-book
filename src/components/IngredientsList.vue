@@ -5,7 +5,9 @@
             <input type="text" v-model.lazy="data.name" />
             Count
             <input type="number" v-model.lazy="data.count" />
-            <button @click="deleteIngredient(key)">Del ing</button>
+            <v-btn color="yellow darken-3" small @click="deleteIngredient(key)"
+                >Del</v-btn
+            >
         </p>
     </div>
 </template>

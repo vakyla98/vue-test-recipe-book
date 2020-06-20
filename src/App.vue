@@ -1,8 +1,8 @@
 <template>
-    <div id="app">
+    <v-app id="app">
         <Header />
-        <router-view />
-    </div>
+        <router-view class="container" />
+    </v-app>
 </template>
 <script>
 import Header from './components/Header'
@@ -12,3 +12,4 @@ export default {
     },
 }
 </script>
+<style lang="scss"></style>

@@ -4,7 +4,9 @@
         <input type="text" v-model="ingredientName" />
         Count
         <input type="number" v-model.number="ingredientCount" />
-        <button @click.prevent="addIngredient">Add ing</button>
+        <v-btn color="yellow darken-3" small @click.prevent="addIngredient"
+            >Add ing</v-btn
+        >
     </div>
 </template>
 <script>

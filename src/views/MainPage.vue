@@ -1,20 +1,24 @@
 <template>
     <div>
+        <v-btn color="yellow darken-3" @click="toggleModal">Add recipe</v-btn>
         <div v-if="isLoading">Wait loading</div>
-        <div class="list" v-else>
-            <recipe-card
-                v-for="recipe in recipes"
-                :recipe="recipe"
-                :key="recipe.name"
-                @changeActiveHandler="changeActiveRecipe"
-            />
-            <button @click="toggleModal">Add recipe</button>
-            <add-recipe v-if="isAdding" @cancel="toggleModal" />
+        <div v-else>
             <active-recipe
                 :recipe="activeRecipe"
-                v-else-if="activeRecipe.name"
+                v-if="activeRecipe.name"
                 @clearActiveRecipe="activeRecipe = {}"
             />
+
+            <div class="recipes-list">
+                <recipe-card
+                    class="recipe-card"
+                    v-for="recipe in recipes"
+                    :recipe="recipe"
+                    :key="recipe.name"
+                    @changeActiveHandler="changeActiveRecipe"
+                />
+            </div>
+            <add-recipe v-if="isAdding" @cancel="toggleModal" />
         </div>
     </div>
 </template>
@@ -57,7 +61,13 @@ export default {
 }
 </script>
 <style lang="scss">
-.list {
-    display: flex;
+.recipes-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+}
+.add-recipe {
+    background-color: green;
+    color: red;
 }
 </style>

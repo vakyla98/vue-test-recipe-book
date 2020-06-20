@@ -1,9 +1,14 @@
 <template>
     <transition name="fade" mode="out-in">
-        <div class="active-recipe">
-            <div class="recipe" @click="$emit('changeActiveHandler', recipe)">
-                <img class="img" :src="recipe.image" />
-                <button @click="isChanging = !isChanging">Edit</button>
+        <div
+            class="active-recipe"
+            @click="$emit('changeActiveHandler', recipe)"
+        >
+            <img class="active-recipe__img" :src="recipe.image" />
+            <div class="active-recipe__data">
+                <v-btn color="yellow darken-3" @click="isChanging = !isChanging"
+                    >Edit</v-btn
+                >
                 <div v-if="isChanging">
                     <input v-model="recipe.name" />
                     <input v-model="recipe.text" />
@@ -17,8 +22,12 @@
                 <ingredients-list :ingredients="recipe.ingredients" />
                 <add-ingredient :ingredients="recipe.ingredients" />
 
-                <button @click="saveRecipe">Save recipe</button>
-                <button @click="deleteRecipe">Delete recipe</button>
+                <v-btn color="yellow darken-3" @click="saveRecipe"
+                    >Save recipe</v-btn
+                >
+                <v-btn color="yellow darken-3" @click="deleteRecipe"
+                    >Delete recipe</v-btn
+                >
             </div>
         </div>
     </transition>
@@ -66,12 +75,17 @@ export default {
     border: 3px solid red;
 }
 .active-recipe {
-    background-color: gray;
-    border: 2px solid black;
-    margin: 5px;
-    padding: 5px;
-    .img {
-        width: 100%;
+    display: flex;
+    align-items: center;
+    font-size:14px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+    &__img {
+        max-height: 250px;
+    }
+    &__data {
     }
 }
 </style>
