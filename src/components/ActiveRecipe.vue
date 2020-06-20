@@ -9,7 +9,7 @@
                 <div v-if="isChanging">
                     <label class="input-label">
                         Recipe name
-                        <input class="input  mb-2" v-model="recipe.name" />
+                        <input class="input  mb-2" v-model.lazy="recipe.name" />
                     </label>
                     <label class="input-label">
                         Image link

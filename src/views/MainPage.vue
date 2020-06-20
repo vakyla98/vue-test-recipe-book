@@ -6,7 +6,7 @@
                 <add-recipe v-if="isAdding" @cancel="toggleAddingRecipe" />
                 <div v-else>
                     <v-btn
-                        class="addRecipe-btn mb-3"
+                        class="addRecipe-btn mb-2"
                         color="yellow darken-3"
                         @click="toggleAddingRecipe"
                         >Add recipe</v-btn
@@ -69,4 +69,3 @@ export default {
     },
 }
 </script>
-
