@@ -48,8 +48,20 @@
                         class="ml-3"
                         color="yellow darken-3"
                         @click="saveRecipe"
-                        ><v-icon>mdi-content-save</v-icon></v-btn
                     >
+                        <transition name="fade-fast" mode="out-in">
+                            <v-progress-circular
+                                v-if="isSaving"
+                                class="loading-layout__spiner"
+                                :size="20"
+                                :width="2"
+                                indeterminate
+                            />
+                            <v-icon v-else>
+                                mdi-content-save
+                            </v-icon>
+                        </transition>
+                    </v-btn>
                     <v-btn
                         class="ml-3"
                         color="yellow darken-3"
@@ -77,6 +89,7 @@ export default {
             ingredientName: '',
             ingredientCount: 1,
             isChanging: false,
+            isSaving: false,
         }
     },
     props: {
@@ -93,8 +106,12 @@ export default {
             this.$emit('clearActiveRecipe')
         },
         async saveRecipe() {
+            this.isSaving = true
             await recipesService.saveRecipe(this.recipe)
-            this.fetchRecipes()
+            setTimeout(() => {
+                //decorative timeout to better UX
+                this.isSaving = false
+            }, 700)
         },
     },
 }

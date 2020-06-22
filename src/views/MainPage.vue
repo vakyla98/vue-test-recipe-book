@@ -2,7 +2,7 @@
     <div>
         <transition name="fade-fast" mode="out-in">
             <loading-layout v-if="isLoading">
-                Wait please, data loading.
+                Wait please, updating data.
             </loading-layout>
         </transition>
         <div class="main-pame" v-if="recipes.length">
