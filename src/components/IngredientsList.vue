@@ -9,18 +9,18 @@
                     :key="key.toString()"
                 >
                     <input
-                        class="ingredient__name"
+                        class="ingredient__input ingredient__input_name"
                         type="text"
                         v-model.lazy="data.name"
                     />
                     <input
-                        class="ingredient__counter px-2"
+                        class="ingredient__input ingredient__input_counter px-2"
                         type="number"
                         v-model.lazy="data.count"
                     />
                     <select
                         v-model="data.type"
-                        class="ingredient__type mr-5 ml-2"
+                        class="ingredient__input ingredient__input_type mr-5 ml-2"
                     >
                         <option>g.</option>
                         <option>ml.</option>
@@ -56,7 +56,6 @@ export default {
     methods: {
         deleteIngredient(key) {
             this.$delete(this.ingredients, key)
-            console.log(key.toString())
         },
     },
 }
