@@ -33,7 +33,10 @@
             </div>
             <div class="active-recipe__ingredients ma-1">
                 <ingredients-list :ingredients="recipe.ingredients" />
-                <add-ingredient :ingredients="recipe.ingredients" />
+                <add-ingredient
+                    :ingredients="recipe.ingredients"
+                    v-if="recipe.ingredients"
+                />
                 <div class="active-recipe__controls mt-5 mt-sm-auto">
                     <v-btn
                         class="edit-btn"

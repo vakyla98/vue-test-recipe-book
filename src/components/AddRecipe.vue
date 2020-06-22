@@ -25,7 +25,7 @@
         >
             Minimum one ingredient must be at list
         </p>
-        <add-ingredient :ingredients="ingredients" />
+        <add-ingredient :ingredients="ingredients" v-if="ingredients" />
         <div class="form__controls mt-5">
             <v-btn color="grey" @click="$emit('cancel')">Exit</v-btn>
             <v-btn

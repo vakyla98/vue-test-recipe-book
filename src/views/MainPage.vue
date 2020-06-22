@@ -1,7 +1,11 @@
 <template>
     <div>
-        <div v-if="isLoading">Wait loading</div>
-        <div v-else>
+        <transition name="fade-fast" mode="out-in">
+            <loading-layout v-if="isLoading">
+                Wait please, data loading.
+            </loading-layout>
+        </transition>
+        <div class="main-pame" v-if="recipes.length">
             <transition name="fade" mode="out-in">
                 <add-recipe v-if="isAdding" @cancel="toggleAddingRecipe" />
                 <div v-else>
@@ -34,6 +38,7 @@
 import RecipeCard from '../components/RecipeCard.vue'
 import ActiveRecipe from '../components/ActiveRecipe.vue'
 import AddRecipe from '../components/AddRecipe.vue'
+import LoadingLayout from '../components/LoadingLayout.vue'
 import { mapActions, mapState } from 'vuex'
 export default {
     name: 'MainPage',
@@ -41,6 +46,7 @@ export default {
         RecipeCard,
         ActiveRecipe,
         AddRecipe,
+        LoadingLayout,
     },
     data() {
         return {

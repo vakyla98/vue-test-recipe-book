@@ -14,7 +14,6 @@ export class RecipesService {
                 recipes.push(res.data[prop])
             }
         })
-        console.log(recipes)
         return recipes
     }
     async addRecipe(recipe) {

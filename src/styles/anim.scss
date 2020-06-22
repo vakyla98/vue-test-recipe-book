@@ -11,3 +11,18 @@
 .fade-leave-to {
     opacity: 0;
 }
+
+.fade-fast-move {
+    transition: transform 0.1s;
+}
+.fade-fast-enter-active {
+    transition: opacity 0.2s;
+}
+.fade-fast-leave-active {
+    transition: opacity 0.2s;
+}
+.fade-fast-enter,
+.fade-fast-leave-to {
+    opacity: 0;
+}
+

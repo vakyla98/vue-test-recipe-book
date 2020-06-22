@@ -30,7 +30,10 @@ import { v4 } from 'uuid'
 export default {
     name: 'AddIngrediend',
     props: {
-        ingredients: Object,
+        ingredients: {
+            type: Object,
+            required: true,
+        },
     },
     data() {
         return {
