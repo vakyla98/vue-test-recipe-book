@@ -6,7 +6,7 @@
                 <div
                     class="ingredient mb-2"
                     v-for="(data, key) in ingredients"
-                    :key="data.name"
+                    :key="key.toString()"
                 >
                     <input
                         class="ingredient__name"
@@ -14,13 +14,24 @@
                         v-model.lazy="data.name"
                     />
                     <input
-                        class="ingredient__counter"
+                        class="ingredient__counter px-2"
                         type="number"
                         v-model.lazy="data.count"
                     />
+                    <select
+                        v-model="data.type"
+                        class="ingredient__type mr-5 ml-2"
+                    >
+                        <option>g.</option>
+                        <option>ml.</option>
+                        <option>cup</option>
+                        <option>tsp.</option>
+                        <option>tbsp.</option>
+                        <option>piece</option>
+                    </select>
                     <v-btn
                         :disabled="Object.keys(ingredients).length == 1"
-                        class="ingredient__del-btn"
+                        class="ingredient__del-btn mr-3"
                         color="yellow darken-3"
                         small
                         @click="deleteIngredient(key)"
@@ -37,11 +48,15 @@
 export default {
     name: 'IngredientsList',
     props: {
-        ingredients: Object,
+        ingredients: {
+            type: Object,
+            required: true,
+        },
     },
     methods: {
         deleteIngredient(key) {
             this.$delete(this.ingredients, key)
+            console.log(key.toString())
         },
     },
 }

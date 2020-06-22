@@ -1,23 +1,30 @@
 <template>
     <div class="add-ingredient mt-5">
-        <div class="inputs-wraper">
+        <input
+            class="input input__name mr-1 mb-2"
+            type="text"
+            placeholder="Ingredien name"
+            v-model="ingredientName"
+        />
+        <div class="wrap">
             <input
-                class="input input__name mr-1 mb-2"
-                type="text"
-                placeholder="Ingredien name"
-                v-model="ingredientName"
-            />
-            <input
-                class="input input__count mb-2"
+                class="input input__count mr-1 mb-2"
                 type="number"
-                placeholder="Count"
                 v-model.number="ingredientCount"
             />
+            <select class="input input__select mb-2" v-model="ingredientType">
+                <option>g.</option>
+                <option>ml.</option>
+                <option>cup</option>
+                <option>tsp.</option>
+                <option>tbsp.</option>
+                <option>piece</option>
+            </select>
         </div>
 
         <v-btn
             :disabled="!ingredientName.length"
-            class="add-ingredient__btn ml-1"
+            class="add-ingredient__btn ml-1 mb-2"
             color="yellow darken-3"
             small
             @click.prevent="addIngredient"
@@ -39,6 +46,7 @@ export default {
         return {
             ingredientName: '',
             ingredientCount: 1,
+            ingredientType: 'g.',
         }
     },
     methods: {
@@ -46,6 +54,7 @@ export default {
             this.$set(this.ingredients, v4(), {
                 name: this.ingredientName,
                 count: this.ingredientCount,
+                type: this.ingredientType,
             })
             this.ingredientName = ''
             this.ingredientCount = 1

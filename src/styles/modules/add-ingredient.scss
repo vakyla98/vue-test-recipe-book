@@ -2,9 +2,7 @@
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap;
-}
-.inputs-wraper {
-    display: flex;
-    flex-grow: 1;
-    gap: 10px;
+    .wrap {
+        display: flex;
+    }
 }

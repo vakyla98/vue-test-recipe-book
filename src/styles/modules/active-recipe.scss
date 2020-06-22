@@ -1,5 +1,9 @@
 @import '../mixins.scss';
 .active-recipe {
+    flex-direction: row;
+    @include screen(max, 700px) {
+        flex-direction: column;
+    }
     position: relative;
     font-size: 14px;
     border-radius: 10px;
@@ -11,8 +15,8 @@
         object-fit: contain;
         align-self: center;
         border-radius: 5px;
-        @include screen(min,400px){
-            height:300px;
+        @include screen(min, 400px) {
+            height: 300px;
         }
     }
     &__about {

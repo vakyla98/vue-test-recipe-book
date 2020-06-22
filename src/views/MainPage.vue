@@ -18,6 +18,7 @@
                     <active-recipe
                         class="mb-5"
                         :recipe="activeRecipe"
+                        v-if="activeRecipe.name"
                         @clearActiveRecipe="activeRecipe = recipes[0]"
                     />
                 </div>

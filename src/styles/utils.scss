@@ -1,3 +1,4 @@
+@import './mixins.scss';
 * {
     padding: 0;
     margin: 0;
@@ -14,8 +15,6 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-
-/* Firefox */
 input[type='number'] {
     -moz-appearance: textfield;
 }
@@ -24,13 +23,25 @@ input[type='number'] {
     line-height: 28px;
     border-radius: 3px;
     padding: 0 5px;
+    @include screen(max, 599px) {
+        font-size: 12px;
+        line-height: 22px;
+    }
     &__name {
         flex-grow: 1;
         min-width: 150px;
     }
     &__count {
         text-align: center;
-        width: 60px;
+        width: 45px;
+        @include screen(max, 599px) {
+            width: 40px;
+        }
+    }
+    &__select {
+        -webkit-appearance: menulist;
+        text-align: center;
+        width: 70px;
     }
 }
 .text {
@@ -41,9 +52,9 @@ input[type='number'] {
     height: 80px;
     overflow-y: auto;
 }
-.container{
+.container {
     max-width: 1000px;
-    width:100%;
+    width: 100%;
     margin: 0 auto;
     padding: 0 10px;
 }

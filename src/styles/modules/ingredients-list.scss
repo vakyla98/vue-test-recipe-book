@@ -10,13 +10,12 @@
         flex-grow: 1;
     }
     &__counter {
-        text-align: center;
-        width: 60px;
+        text-align: right;
+        width: 40px;
     }
     &__del {
         &-btn {
             padding: 0 !important;
-            margin-right: 15px !important;
             min-width: 28px !important;
         }
         &-icon {

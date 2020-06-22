@@ -1,7 +1,7 @@
 <template>
     <transition name="fade" mode="out-in">
         <div
-            class="active-recipe d-flex flex-column flex-sm-row pa-2 align-center align-sm-stretch"
+            class="active-recipe d-flex pa-2 align-center align-sm-stretch"
             @click="$emit('changeActiveHandler', recipe)"
             :key="recipe.name"
         >
@@ -48,19 +48,11 @@
                         class="ml-3"
                         color="yellow darken-3"
                         @click="saveRecipe"
+                        :loading="isSaving"
                     >
-                        <transition name="fade-fast" mode="out-in">
-                            <v-progress-circular
-                                v-if="isSaving"
-                                class="loading-layout__spiner"
-                                :size="20"
-                                :width="2"
-                                indeterminate
-                            />
-                            <v-icon v-else>
-                                mdi-content-save
-                            </v-icon>
-                        </transition>
+                        <v-icon>
+                            mdi-content-save
+                        </v-icon>
                     </v-btn>
                     <v-btn
                         class="ml-3"
