@@ -15,9 +15,9 @@
         object-fit: contain;
         align-self: center;
         border-radius: 5px;
-        @include screen(min, 400px) {
-            height: 300px;
-        }
+        // @include screen(min, 400px) {
+        //     height: 300px;
+        // }
     }
     &__about {
         flex: 1 0 300px;
