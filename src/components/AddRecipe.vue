@@ -41,7 +41,7 @@
 <script>
 import IngredientsList from './IngredientsList'
 import { recipesService } from '../services'
-import { mapActions } from 'vuex'
+import { mapActions,mapMutations } from 'vuex'
 import AddIngredient from './AddIngredient'
 export default {
     name: 'AddRecipe',
@@ -54,15 +54,19 @@ export default {
     },
     methods: {
         ...mapActions(['fetchRecipes']),
+        ...mapMutations(['changeLoadingState']),
+
         async onSubmit() {
+            this.changeLoadingState(true)
             await recipesService.addRecipe({
                 name: this.name,
                 text: this.text,
                 ingredients: this.ingredients,
                 image: this.image,
             })
-            this.$emit('cancel')
             await this.fetchRecipes()
+            this.$emit('cancel')
+            this.changeLoadingState(false)
         },
     },
     computed: {

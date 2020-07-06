@@ -7,7 +7,7 @@
         </transition>
         <div class="main-pame">
             <transition name="fade" mode="out-in">
-                <add-recipe v-if="isAdding" @cancel="toggleAddingRecipe" />
+                <add-recipe v-if="isAdding" @cancel="cancelRecipeForm" />
                 <div v-else>
                     <v-btn
                         class="addRecipe-btn mb-2"
@@ -19,7 +19,7 @@
                         class="mb-5"
                         :recipe="activeRecipe"
                         v-if="activeRecipe.name"
-                        @clearActiveRecipe="activeRecipe = recipes[0]"
+                        @clearActiveRecipe="setActiveRecipe"
                     />
                 </div>
             </transition>
@@ -69,10 +69,21 @@ export default {
         toggleAddingRecipe() {
             this.isAdding = !this.isAdding
         },
+        cancelRecipeForm() {
+            this.toggleAddingRecipe()
+            this.setActiveRecipe()
+        },
+        setActiveRecipe() {
+            if (this.recipes.length) {
+                this.activeRecipe = this.recipes[0]
+            } else {
+                this.activeRecipe = {}
+            }
+        },
     },
     async created() {
         await this.fetchRecipes()
-        this.activeRecipe = this.recipes[0]
+        this.setActiveRecipe()
     },
 }
 </script>
