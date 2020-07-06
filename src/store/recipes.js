@@ -12,7 +12,7 @@ export default {
     actions: {
         async fetchRecipes(ctx) {
             ctx.commit('changeLoadingState', true)
-            let recipes = await recipesService.getAllRecipes()
+            let recipes = await recipesService.fetchAllRecipes()
             ctx.commit('updateRecipes', recipes)
             ctx.commit('changeLoadingState', false)
         },

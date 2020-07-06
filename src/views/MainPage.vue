@@ -5,7 +5,7 @@
                 Wait please, updating data.
             </loading-layout>
         </transition>
-        <div class="main-pame" v-if="recipes.length">
+        <div class="main-pame">
             <transition name="fade" mode="out-in">
                 <add-recipe v-if="isAdding" @cancel="toggleAddingRecipe" />
                 <div v-else>
@@ -23,13 +23,13 @@
                     />
                 </div>
             </transition>
-            <div class="recipes-list">
+            <div class="recipes-list" v-if="recipes.length">
                 <recipe-card
                     class="recipe-card"
                     v-for="recipe in recipes"
                     :recipe="recipe"
                     :key="recipe.name"
-                    @changeActiveHandler="changeActiveRecipe"
+                    @changeActiveRecipe="changeActiveRecipe"
                 />
             </div>
         </div>

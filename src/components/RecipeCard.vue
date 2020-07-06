@@ -1,5 +1,5 @@
 <template>
-    <div class="recipe-card pa-2" @click="$emit('changeActiveHandler', recipe)">
+    <div class="recipe-card pa-2" @click="$emit('changeActiveRecipe', recipe)">
         <img class="recipe-card__img mb-2" :src="recipe.image" />
         <h4 class="recipe-card__name mb-2">
             {{ recipe.name }}

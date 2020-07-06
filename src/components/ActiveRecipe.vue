@@ -69,7 +69,7 @@
 import AddIngredient from './AddIngredient'
 import IngredientsList from './IngredientsList'
 import { recipesService } from '../services'
-import { mapActions } from 'vuex'
+import { mapActions, mapMutations } from 'vuex'
 export default {
     name: 'ActiveCard',
     components: {
@@ -91,11 +91,14 @@ export default {
         },
     },
     methods: {
+        ...mapMutations(['changeLoadingState']),
         ...mapActions(['fetchRecipes']),
         async deleteRecipe() {
+            this.changeLoadingState(true)
             await recipesService.deleteRecipe(this.recipe.key)
-            this.fetchRecipes()
+            await this.fetchRecipes()
             this.$emit('clearActiveRecipe')
+            this.changeLoadingState(false)
         },
         async saveRecipe() {
             this.isSaving = true

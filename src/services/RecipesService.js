@@ -5,7 +5,7 @@ export class RecipesService {
         this.http = http
         this.fullHttp = http + '.json'
     }
-    async getAllRecipes() {
+    async fetchAllRecipes() {
         let recipes = []
         await axios.get(this.fullHttp).then(res => {
             //change data structure from nested object to array of objects

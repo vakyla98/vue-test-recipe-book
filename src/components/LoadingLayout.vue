@@ -10,7 +10,7 @@
                 :width="7"
                 color="yellow darken-3"
                 indeterminate
-            ></v-progress-circular>
+            />
         </div>
     </div>
 </template>
