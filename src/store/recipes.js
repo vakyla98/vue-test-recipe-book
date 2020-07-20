@@ -10,11 +10,15 @@ export default {
         },
     },
     actions: {
-        async fetchRecipes(ctx) {
-            ctx.commit('changeLoadingState', true)
+        async fetchRecipes({ commit }) {
+            commit('changeLoadingState', true)
             let recipes = await recipesService.fetchAllRecipes()
-            ctx.commit('updateRecipes', recipes)
-            ctx.commit('changeLoadingState', false)
+            commit('updateRecipes', recipes)
+            commit('changeLoadingState', false)
+        },
+        async restoreRecipes({ dispatch }) {
+            await recipesService.restoreRecipes()
+            await dispatch('fetchRecipes')
         },
     },
     getters: {

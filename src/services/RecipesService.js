@@ -1,10 +1,11 @@
 import axios from 'axios'
 import restructure from '../helpers/changeStructure.js'
+import backup from '../recipes-backup.js'
 
 export class RecipesService {
     constructor(http) {
-        this.http = http
-        this.fullHttp = http + '.json'
+        this.http = http + '/recipes'
+        this.fullHttp = this.http + '.json'
     }
     async fetchAllRecipes() {
         let recipes = await axios
@@ -30,5 +31,8 @@ export class RecipesService {
             ingredients: recipe.ingredients,
             image: recipe.image,
         })
+    }
+    async restoreRecipes() {
+        await axios.put(this.fullHttp, backup)
     }
 }

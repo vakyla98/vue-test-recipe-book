@@ -32,9 +32,10 @@
                     @changeActiveRecipe="changeActiveRecipe"
                 />
             </div>
-            <!-- <div class="recipes-backup">
-
-            </div> -->
+            <restore-recipes
+                @restore="setActiveRecipe"
+                v-show="!recipes.length"
+            />
         </div>
     </div>
 </template>
@@ -43,6 +44,8 @@ import RecipeCard from '../components/RecipeCard.vue'
 import ActiveRecipe from '../components/ActiveRecipe.vue'
 import AddRecipe from '../components/AddRecipe.vue'
 import LoadingLayout from '../components/LoadingLayout.vue'
+import RestoreRecipes from '../components/RestoreRecipes.vue'
+
 import { mapActions, mapState } from 'vuex'
 export default {
     name: 'MainPage',
@@ -51,6 +54,7 @@ export default {
         ActiveRecipe,
         AddRecipe,
         LoadingLayout,
+        RestoreRecipes,
     },
     data() {
         return {

@@ -1,5 +1,4 @@
 <template>
-    <transition name="fade" mode="out-in">
         <div
             class="active-recipe d-flex pa-2 align-center align-sm-stretch"
             @click="$emit('changeActiveHandler', recipe)"
@@ -63,7 +62,6 @@
                 </div>
             </div>
         </div>
-    </transition>
 </template>
 <script>
 import AddIngredient from './AddIngredient'
