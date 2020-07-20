@@ -1,9 +1,17 @@
 <template>
     <div class="recipes-backup">
-        <p>
-            Looks like somebody delete all recipes :( But you can restore them.
+        <p class="recipes-backup__text">
+            Looks like somebody delete all recipes :(
+            <br />
+            But you can restore them.
         </p>
-        <v-btn @click="restoreHandler">Yes, i want</v-btn>
+        <v-btn
+            @click="restoreHandler"
+            class="recipes-backup__btn"
+            color="yellow darken-3"
+        >
+            Yes, i want
+        </v-btn>
     </div>
 </template>
 <script>
@@ -13,7 +21,7 @@ export default {
     methods: {
         async restoreHandler() {
             await this.restoreRecipes()
-            this.$emit('restore', 'from restore')
+            this.$emit('restore')
         },
         ...mapActions(['restoreRecipes']),
     },
