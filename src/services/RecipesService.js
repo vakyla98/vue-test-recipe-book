@@ -1,4 +1,5 @@
 import axios from 'axios'
+import restructure from '../helpers/changeStructure.js'
 
 export class RecipesService {
     constructor(http) {
@@ -6,14 +7,9 @@ export class RecipesService {
         this.fullHttp = http + '.json'
     }
     async fetchAllRecipes() {
-        let recipes = []
-        await axios.get(this.fullHttp).then(res => {
-            //change data structure from nested object to array of objects
-            for (let prop in res.data) {
-                res.data[prop].key = prop // add key into object for put and delete methods
-                recipes.push(res.data[prop])
-            }
-        })
+        let recipes = await axios
+            .get(this.fullHttp)
+            .then(res => restructure(res.data))
         return recipes
     }
     async addRecipe(recipe) {
@@ -26,11 +22,6 @@ export class RecipesService {
     }
     async deleteRecipe(key) {
         await axios.delete(this.http + '/' + key + '.json')
-        //creating link look like https://recope-book.firebaseio.com/recipes/key.json -> where
-        //key is recipe key,
-        //recope-book - name of my project,
-        //recipes - path to data
-        //.json - type of output data
     }
     async saveRecipe(recipe) {
         await axios.put(this.http + '/' + recipe.key + '.json', {
