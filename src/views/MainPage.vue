@@ -18,7 +18,7 @@
                     <active-recipe
                         class="mb-5"
                         :recipe="activeRecipe"
-                        v-if="activeRecipe.name"
+                        v-if="activeRecipe.ingredients"
                         @clearActiveRecipe="setActiveRecipe"
                     />
                 </div>
@@ -28,7 +28,7 @@
                     class="recipe-card"
                     v-for="recipe in recipes"
                     :recipe="recipe"
-                    :key="recipe.name"
+                    :key="recipe.image"
                     @changeActiveRecipe="changeActiveRecipe"
                 />
             </div>

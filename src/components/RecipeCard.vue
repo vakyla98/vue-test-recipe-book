@@ -4,7 +4,7 @@
         <h4 class="recipe-card__name mb-2">
             {{ recipe.name }}
         </h4>
-        <p class='text short-text' v-text='recipe.text'></p>
+        <p class="text short-text" v-text="recipe.text"></p>
     </div>
 </template>
 
