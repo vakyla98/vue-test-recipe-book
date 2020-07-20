@@ -37,7 +37,7 @@
                 <v-btn
                     class="edit-btn"
                     color="yellow darken-3"
-                    @click="isChanging = !isChanging"
+                    @click="toggleChanging"
                     ><v-icon>mdi-pencil</v-icon></v-btn
                 >
                 <v-btn
@@ -88,6 +88,9 @@ export default {
     methods: {
         ...mapMutations(['changeLoadingState']),
         ...mapActions(['fetchRecipes']),
+        toggleChanging() {
+            this.isChanging = !this.isChanging
+        },
         async deleteRecipe() {
             this.changeLoadingState(true)
             await recipesService.deleteRecipe(this.recipe.key)
@@ -98,9 +101,11 @@ export default {
         async saveRecipe() {
             this.isSaving = true
             await recipesService.saveRecipe(this.recipe)
+
             setTimeout(() => {
                 //decorative timeout to better UX
                 this.isSaving = false
+                this.isChanging = false
             }, 700)
         },
     },
