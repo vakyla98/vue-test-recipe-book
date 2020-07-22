@@ -19,11 +19,11 @@ import { mapActions } from 'vuex'
 export default {
     name: 'RestoreRecipes',
     methods: {
+        ...mapActions('recipes',['restoreRecipes']),
         async restoreHandler() {
             await this.restoreRecipes()
             this.$emit('restore')
         },
-        ...mapActions(['restoreRecipes']),
     },
 }
 </script>

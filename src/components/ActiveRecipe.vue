@@ -53,7 +53,7 @@
                 <v-btn
                     class="ml-3"
                     color="yellow darken-3"
-                    @click="deleteRecipe"
+                    @click="deleteHandler"
                     ><v-icon>mdi-delete</v-icon></v-btn
                 >
             </div>
@@ -86,22 +86,23 @@ export default {
         },
     },
     methods: {
-        ...mapMutations(['changeLoadingState']),
-        ...mapActions(['fetchRecipes']),
+        ...mapMutations({
+            deleteRecipe: 'recipes/deleteRecipe',
+            changeLoadingState: 'changeLoadingState',
+        }),
+        ...mapActions('recipes', ['fetchRecipes']),
         toggleChanging() {
             this.isChanging = !this.isChanging
         },
-        async deleteRecipe() {
-            this.changeLoadingState(true)
-            await recipesService.deleteRecipe(this.recipe.key)
-            await this.fetchRecipes()
-            this.$emit('clearActiveRecipe')
-            this.changeLoadingState(false)
+        async deleteHandler() {
+            this.deleteRecipe(this.recipe)
+            recipesService.deleteRecipe(this.recipe.key)
+            this.$emit('deleting')
+            this.isChanging = false
         },
         async saveRecipe() {
             this.isSaving = true
             await recipesService.saveRecipe(this.recipe)
-
             setTimeout(() => {
                 //decorative timeout to better UX
                 this.isSaving = false

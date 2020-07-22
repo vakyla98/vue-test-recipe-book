@@ -6,6 +6,7 @@ import recipes from './recipes'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+    namespaced: true,
     state: {
         isLoading: true,
     },

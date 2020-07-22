@@ -1,1 +1,1 @@
-Write text with email to report a bug or deleted data.
+Write text with email to report a bug.

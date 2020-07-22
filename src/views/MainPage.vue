@@ -19,7 +19,7 @@
                         class="mb-5"
                         :recipe="activeRecipe"
                         v-if="activeRecipe.ingredients"
-                        @clearActiveRecipe="setActiveRecipe"
+                        @deleting="setActiveRecipe"
                     />
                 </div>
             </transition>
@@ -69,7 +69,7 @@ export default {
         }),
     },
     methods: {
-        ...mapActions(['fetchRecipes']),
+        ...mapActions('recipes', ['fetchRecipes']),
         changeActiveRecipe(newActive) {
             this.activeRecipe = newActive
         },
