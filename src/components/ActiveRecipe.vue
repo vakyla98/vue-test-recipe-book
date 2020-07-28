@@ -73,8 +73,6 @@ export default {
     },
     data() {
         return {
-            ingredientName: '',
-            ingredientCount: 1,
             isChanging: false,
             isSaving: false,
         }
