@@ -33,15 +33,16 @@
                 color="yellow darken-3"
                 :disabled="!isValid"
                 type="submit"
-                >Submit</v-btn
             >
+                Submit
+            </v-btn>
         </div>
     </form>
 </template>
 <script>
 import IngredientsList from './IngredientsList'
 import { recipesService } from '../services'
-import { mapActions,mapMutations } from 'vuex'
+import { mapActions, mapMutations } from 'vuex'
 import AddIngredient from './AddIngredient'
 export default {
     name: 'AddRecipe',
@@ -68,6 +69,7 @@ export default {
             this.$emit('cancel')
             this.changeLoadingState(false)
         },
+        
     },
     computed: {
         isValid() {

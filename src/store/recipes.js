@@ -27,6 +27,7 @@ export default {
             await dispatch('fetchRecipes')
         },
     },
+    //Now that getter no needed
     getters: {
         getRecipeByName: state => name => {
             return state.recipes.find(recipes => recipes.name === name)
