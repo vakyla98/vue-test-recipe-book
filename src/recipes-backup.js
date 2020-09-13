@@ -40,7 +40,7 @@ export default {
     },
     '-chipotle': {
         image:
-            'https://firebasestorage.googleapis.com/v0/b/recope-book.appspot.com/o/burger.jpg?alt=media&token=6ace0fd1-42c3-475d-8e7c-a17cfc747089',
+            'https://firebasestorage.googleapis.com/v0/b/recope-book.appspot.com/o/chipotle.jpg?alt=media&token=31f67be7-cbd6-4407-9b61-ee249ae9a2cd',
         ingredients: {
             '56f578ec-80e0-48e1-b5bc-ca8a03533f5e': {
                 count: 70,
